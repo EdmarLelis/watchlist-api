@@ -1,84 +1,109 @@
 # 🎬 Watchlist API
 
-API backend desenvolvida com **Node.js, Express, Prisma e PostgreSQL**, com autenticação JWT e relacionamentos entre usuários, filmes e watchlists.
+API backend desenvolvida para gerenciamento de listas de filmes, focada em segurança e performance. Utiliza **Node.js** com **Prisma** e **PostgreSQL** com autenticação JWT.
 
 ---
 
-## 🚀 Tecnologias utilizadas
+## 🚀 Tecnologias
 
-- Node.js
-- Express
-- Prisma ORM
-- PostgreSQL
-- JWT (JSON Web Token)
-- bcrypt
-- JavaScript (ESModules)
+O projeto foi construído utilizando as melhores práticas do ecossistema Node.js:
+
+* **Runtime:** Node.js (v18+)
+* **Framework:** Express
+* **ORM:** Prisma
+* **Banco de Dados:** PostgreSQL
+* **Segurança:** JWT (JSON Web Tokens) & Bcrypt para hashing de senhas
+* **Linguagem:** JavaScript (ESModules)
 
 ---
 
 ## ⚙️ Funcionalidades
-- Cadastro de usuários
-- Autenticação com JWT
-- CRUD de filmes
-- Relacionamento entre usuários, filmes e watchlists
-- Proteção de rotas com middleware de autenticação
-- Seed de dados para ambiente de desenvolvimento
+
+* **Gestão de Usuários:** Cadastro e autenticação segura.
+* **Segurança:** Proteção de rotas via Middleware de autenticação JWT.
+* **Catálogo de Filmes:** CRUD completo de títulos.
+* **Watchlists:** Relacionamento dinâmico entre usuários e seus filmes favoritos.
+* **Dados Iniciais:** Sistema de *seed* para agilizar o setup do ambiente de desenvolvimento.
 
 ---
 
-## 🔐 Variáveis de ambiente
+## 🛣️ Principais Endpoints
 
-Este projeto utiliza variáveis de ambiente para configuração.
+| Método | Endpoint | Descrição | Autenticação |
+| --- | --- | --- | --- |
+| `POST` | `/auth/register` | Cria um novo usuário | Não |
+| `POST` | `/auth/login` | Retorna o token JWT | Não |
+| `POST` | `/auth/logout` | Limpa o token JWT | Não |
+| `POST` | `/watchlist` | Adiciona filme à lista do usuário | Sim |
+| `DELETE` | `/watchlist/:id` | Deleta um filme da lista do usuário | Sim |
+| `PUT` | `/watchlist/:id` | Modifica um filme da lista do usuário | Sim |
 
-Crie um arquivo `.env` baseado no `.env.example`:
+---
+
+## 🔐 Configuração do Ambiente
+
+Crie um arquivo `.env` na raiz do projeto seguindo o modelo abaixo:
 
 ```env
+# Database
 DATABASE_URL="postgresql://user:password@localhost:5432/database_name"
+
+# App
 NODE_ENV="development"
-JWT_SECRET="your_jwt_secret_here"
+
+# Auth
+JWT_SECRET="sua_chave_secreta_super_segura"
 JWT_EXPIRES_IN="1d"
 
-🧪 Como rodar o projeto localmente
-Pré-requisitos
+```
 
--Node.js (versão 18 ou superior)
--Banco de dados PostgreSQL (Neon ou local)
--npm ou yarn
+---
 
-1️⃣ Clonar o repositório
+## 🧪 Como rodar localmente
 
+### Pré-requisitos
+
+* **Node.js** (v18 ou superior)
+* Instância de **PostgreSQL** ativa (Local ou Cloud)
+
+### Passo a Passo
+
+1. **Clonar e instalar:**
+```bash
 git clone git@github.com:SEU_USUARIO/NOME_DO_REPO.git
 cd NOME_DO_REPO
-
-2️⃣ Instalar as dependências
-
 npm install
 
-3️⃣ Configurar variáveis de ambiente
+```
 
-cp .env.example .env
 
-Preencha as variáveis de ambiente no arquivo .env.
-4️⃣ Gerar o Prisma Client
-
+2. **Banco de Dados & Prisma:**
+```bash
+# Gera o client do Prisma
 npx prisma generate
 
-5️⃣ Rodar as migrations
-
+# Roda as migrations para criar as tabelas
 npx prisma migrate dev
 
-6️⃣ (Opcional) Rodar seed
-
+# (Opcional) Popula o banco com dados iniciais
 npx prisma db seed
 
-7️⃣ Iniciar o servidor
+```
 
+
+3. **Execução:**
+```bash
 npm run dev
 
-O servidor estará disponível em:
+```
 
-http://localhost:3000
 
-📌 Status do projeto
+> Acesse em: `http://localhost:3000`
 
-🚧 Em desenvolvimento — melhorias e novas funcionalidades serão adicionadas.
+
+
+---
+
+## 📌 Status do projeto
+
+🚧 **Em desenvolvimento**.
