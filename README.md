@@ -70,8 +70,8 @@ JWT_EXPIRES_IN="1d"
 
 1. **Clonar e instalar:**
 ```bash
-git clone git@github.com:SEU_USUARIO/NOME_DO_REPO.git
-cd NOME_DO_REPO
+git clone git@github.com:EdmarLelis/whatchlist-api.git
+cd whatchlist-api
 npm install
 
 ```
@@ -86,7 +86,7 @@ npx prisma generate
 npx prisma migrate dev
 
 # (Opcional) Popula o banco com dados iniciais
-npx prisma db seed
+npm run seed:movies
 
 ```
 
