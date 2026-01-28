@@ -72,4 +72,29 @@ const updateMovie = async (req, res) => {
   });
 };
 
-export { createMovie, updateMovie };
+const deleteMovie = async (req, res) => {
+  const movie = await prisma.movie.findUnique({
+    where: { id: req.params.id },
+  });
+
+  if (!movie) {
+    return res.status(404).json({
+      error: 'Movie not found',
+    });
+  }
+
+  if (movie.createdBy !== req.user.id) {
+    return res.status(403).json({ error: 'Not allowed to delete this movie' });
+  }
+
+  await prisma.movie.delete({
+    where: { id: req.params.id },
+  });
+
+  res.status(200).json({
+    status: 'success',
+    message: 'Movie deleted',
+  });
+};
+
+export { createMovie, updateMovie, deleteMovie };
