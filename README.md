@@ -37,6 +37,7 @@ O projeto foi construído utilizando as melhores práticas do ecossistema Node.j
 | `POST` | `/watchlist` | Adiciona filme à lista do usuário | Sim |
 | `DELETE` | `/watchlist/:id` | Deleta um filme da lista do usuário | Sim |
 | `PUT` | `/watchlist/:id` | Modifica um filme da lista do usuário | Sim |
+| `POST` | `/movie` | Cria um filme | Sim |
 
 ---
 

@@ -4,8 +4,8 @@ import {
   removeFromWatchlist,
   updateWatchlist,
 } from '../controllers/watchlistController.js';
-import { authMiddleeare } from '../middleware/authMiddleware.js';
-import { validateRequest } from '../middleware/validateRequest.js';
+import { authMiddleare } from '../middlewares/authMiddleware.js';
+import { validateRequest } from '../middlewares/validateRequest.js';
 import {
   addToWatchlistSchema,
   updateWatchlistSchema,
@@ -13,7 +13,7 @@ import {
 
 const router = express.Router();
 
-router.use(authMiddleeare);
+router.use(authMiddleare);
 
 router.post('/', validateRequest(addToWatchlistSchema), addToWatchlist);
 

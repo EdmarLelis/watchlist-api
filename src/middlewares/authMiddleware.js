@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { prisma } from '../config/db.js';
 
-export const authMiddleeare = async (req, res, next) => {
+export const authMiddleare = async (req, res, next) => {
   console.log('Auth Middleware reached!');
 
   let token;

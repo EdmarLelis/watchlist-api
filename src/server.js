@@ -4,6 +4,7 @@ import { connectDB, disconnectDB } from './config/db.js';
 
 import authRoutes from './routes/authRoutes.js';
 import watchlistRoutes from './routes/watchlistRoutes.js';
+import movieRoutes from './routes/movieRoutes.js';
 
 config();
 connectDB();
@@ -15,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/auth', authRoutes);
 app.use('/watchlist', watchlistRoutes);
+app.use('/movie', movieRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
