@@ -59,6 +59,12 @@ const updateWatchlist = async (req, res) => {
   if (rating !== undefined) updateData.rating = rating;
   if (notes !== undefined) updateData.notes = notes;
 
+  if (Object.keys(updateData).length === 0) {
+    return res
+      .status(400)
+      .json({ message: 'At least one field must be provided for update' });
+  }
+
   const updateItem = await prisma.watchlistItem.update({
     where: { id: req.params.id },
     data: updateData,

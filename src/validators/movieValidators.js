@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const createMovieSchema = z.object({
+const createMovieSchema = z.object({
   title: z
     .string({
       required_error: 'Title is required',
@@ -48,3 +48,17 @@ export const createMovieSchema = z.object({
     .url('Poster URL must be a valid URL')
     .optional(),
 });
+
+const updateMovieSchema = createMovieSchema
+  .partial()
+  .refine(
+    (data) =>
+      Object.values(data).some(
+        (value) => value !== undefined && value !== null,
+      ),
+    {
+      message: 'At least one field must be provided for update',
+    },
+  );
+
+export { createMovieSchema, updateMovieSchema };
